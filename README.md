@@ -24,6 +24,39 @@ SETINet is a state-of-the-art framework for analyzing astronomical data to detec
 
 ## System Architecture
 
+```mermaid
+graph TD
+    subgraph Data Pipeline
+        A[Astronomical Data Sources] --> B[DataFetcher]
+        B --> C[Raw Data Storage]
+        C --> D[SignalProcessor]
+        D --> E[Processed Data]
+    end
+
+    subgraph ML Pipeline
+        E --> F[SETIDataset]
+        F --> G[DataLoader]
+        G --> H[SETINet Model]
+    end
+
+    subgraph Training Pipeline
+        H --> I[Trainer]
+        I --> J[Model Checkpoints]
+        I --> K[TensorBoard Logs]
+        I --> L[Training Metrics]
+    end
+
+    subgraph Model Architecture
+        M[Input Layer] --> N[Conv2D + ReLU + MaxPool]
+        N --> O[Conv2D + ReLU + MaxPool]
+        O --> P[Conv2D + ReLU + MaxPool]
+        P --> Q[Flatten]
+        Q --> R[Dense + ReLU]
+        R --> S[Dropout]
+        S --> T[Output Layer]
+    end
+```
+
 ### Data Pipeline
 ```mermaid
 graph TD
